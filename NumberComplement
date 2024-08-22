@@ -1,0 +1,11 @@
+class Solution {
+public:
+    int findComplement(int num) {
+        int noofbits=int(log2(num)) +1;//finding no of bits 
+        for(int i=0;i<noofbits;i++)
+        {
+            num=num^(1<<i); //rightshift after every i iteration and taking the XOR to reverse the bits
+        }
+        return num;
+    }
+};
