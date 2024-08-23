@@ -1,0 +1,53 @@
+class Solution {
+public:
+int getgcd(int num, int den)
+{
+    if(num==0)
+    {
+        return den;
+    }
+    return getgcd(den%num,num);
+}
+    string fractionAddition(string expression) {
+        int size=expression.length();
+        int num=0;
+        int den=1;
+        int i=0;
+       
+        while(i<size)
+        {
+            int currnum=0;
+            int currden=0;
+            bool isNeg = (expression[i]=='-');
+            
+            if(expression[i]=='+'||expression[i]=='-')
+            {
+            i++;     
+            }
+            while(i<size&&isdigit(expression[i]))
+            {
+                int value=expression[i]-'0';
+                currnum=currnum*10+value;
+                i++;
+            }
+            i++;
+            if(isNeg)
+            {
+                currnum=currnum*-1;
+            }
+            while(i<size&&isdigit(expression[i]))
+            {
+                int value=expression[i]-'0';
+                currden=currden*10+value;
+                i++;
+            }
+           
+            num=num*currden+den*currnum;
+            den=currden*den;
+        }
+        int GCD=abs(getgcd(num, den));
+        num=num/GCD;
+        den=den/GCD;
+        return to_string(num)+"/"+to_string(den);
+    }
+};
