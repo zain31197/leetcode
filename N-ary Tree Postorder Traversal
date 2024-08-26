@@ -17,7 +17,7 @@ public:
     }
 };
 */
-
+//solution 1
 class Solution {
 public:
  void help(vector <int>&list ,Node *root)
@@ -43,5 +43,27 @@ public:
        help(list,root);
        list.push_back(root->val);
        return list;
+    }
+};
+//solution 2
+
+
+
+vector <int> a;
+void Postorder(Node*root)
+{
+    if(root==NULL)
+    {
+        return;
+    }
+    for(Node*child:root->children)
+        Postorder(child);
+        a.push_back(root->val);
+    
+}
+    vector<int> postorder(Node* root) {
+     
+     Postorder(root);
+     return a;
     }
 };
